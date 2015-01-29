@@ -58,7 +58,7 @@ public class MyTridentstateTopo {
 
     topo.newDRPCStream("logCount", localDRPC)
         .each(new Fields("args"), new MySplitFunction(" "), new Fields("date"))
-        // 把传递进来的需要查询的日期先分组，在求数量
+        // 把传递进来的需要查询的日期先分组， 在求数量
         .groupBy(new Fields("date"))
         // 查询出每个日期的结果
         .stateQuery(state, new Fields("date"), new MapGet(), new Fields("count"))
